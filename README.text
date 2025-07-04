@@ -1,0 +1,74 @@
+Online Course Platform (Microservices Project)
+
+A full-stack Online Course Platform built using Spring Boot Microservices architecture, implementing secure user authentication, role-based authorization, and seamless service communication.
+
+-----------------------------------------------------------------------------------------------------------------
+System Features:
+
+1. Users can register, log in, view available courses, and enroll
+2. Admins can create and manage courses
+3. Gateway validates JWT tokens before forwarding requests
+4. Each service communicates via Feign Clients, secured by JWT, and discovered through Eureka Server
+
+-------------------------------------------------------------------------------------------------------------------
+
+### Tech Stack :
+  Spring Boot
+  Spring Cloud Gateway
+  Spring Security + JWT
+  Spring Cloud Netflix Eureka
+  OpenFeign
+  MySQL
+  Lombok, ModelMapper
+  Postman
+  Maven (multi-module)
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+### Microservices Structure
+
+```
+online-course-platform/
+├── api-gateway
+├── auth-service
+├── course-service
+├── enrollment-service
+├── discovery-server
+```
+
+--------------------------------------------------------------------------------------------------------------
+### Key Features
+  User authentication with JWT
+  Role-based access control
+  Gateway-level token validation using filters
+  Service discovery with Eureka
+  Feign clients for service-to-service calls
+  Clean DTO architecture
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Getting Started
+
+1. Clone the repository
+   `git clone https://github.com/your-username/online-course-platform.git`
+2. Navigate to each folder and run:
+   `mvn spring-boot:run`
+Start with:
+
+ `discovery-server`
+ `auth-service`
+ `api-gateway`
+ `course-service`
+ `enrollment-service`
+
+--------------------------------------------------------------------
+
+### API Overview
+
+| Endpoint          | Method | Description                |
+| ----------------- | ------ | -------------------------- |
+| `/auth/register`  | POST   | Register a new user        |
+| `/auth/login`     | POST   | Log in and receive JWT     |
+| `/courses/list`   | GET    | View available courses     |
+| `/courses/create` | POST   | Create course (Admin only) |
+| `/enroll`         | POST   | Enroll in a course         |
