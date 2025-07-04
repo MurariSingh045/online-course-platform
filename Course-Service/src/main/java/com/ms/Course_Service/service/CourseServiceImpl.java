@@ -62,5 +62,11 @@ public class CourseServiceImpl implements CourseService{
                 .orElse(null);
     }
 
+    @Override
+    public String deleteCourse(Long id) {
+         courseRepository.deleteById(id);
+         return "Deleted Successfully !";
+    }
+
 
 }

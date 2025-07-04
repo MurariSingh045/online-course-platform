@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @Builder
 public class EnrollmentRequestDTO {
 
+    private Long id;
     private String userEmail;
     private Long courseId;
     private LocalDateTime enrolledAt;

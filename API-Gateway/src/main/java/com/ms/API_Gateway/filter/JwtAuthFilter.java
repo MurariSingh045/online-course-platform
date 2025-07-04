@@ -49,13 +49,26 @@ public class JwtAuthFilter implements GlobalFilter {
         String token = rawAuth.substring(7); // strip Bearer
 
         //Calls Auth Service’s /auth/validate.
+        //Builds a WebClient instance using the WebClient.Builder (webClientBuilder), which is usually injected using @Autowired or constructor injection.//Spring creates a WebClient.Builder bean automatically if Spring WebFlux is in the classpath.
+        //build() finalizes the configuration and returns a WebClient ready for making HTTP requests.
         return webClientBuilder.build()
+
+                //Internally creates a ClientRequest object using the GET HTTP method.
+                //Internally creates a ClientRequest object using the GET HTTP method.
                 .get()
                 .uri("http://AUTH-SERVICE/auth/validate")
+
+                //Adds an HTTP header to the request with the JWT token for authorization.
                 .header("Authorization", "Bearer " + token)
+
+                //Prepares to send the request and retrieve the response body as a reactive stream.
                 .retrieve()
+
+                //Tells WebClient to convert the response body into a Mono<AuthResponseDTO>.
                 .bodyToMono(AuthResponseDTO.class)
 
+               //This processes the JSON response (converted to AuthResponseDTO) and extracts the isValid flag.
+                // if the JSON is valid map  will return true else false.
                 .flatMap(authResponse -> {
                     // injecting role and email into header
                     ServerHttpRequest modifiedRequest = exchange.getRequest().mutate()

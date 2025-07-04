@@ -14,4 +14,8 @@ public interface EnrollmentService {
     List<EnrollmentResponseDTO> getUserEnrollments(EnrollmentRequestDTO enrollmentRequestDTO);
 
     List<EnrollmentResponseDTO> getAllEnrollments();
+
+
+
+    String deleteEnrollment(Long id);
 }

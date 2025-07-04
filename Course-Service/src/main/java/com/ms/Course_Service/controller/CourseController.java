@@ -42,6 +42,7 @@ public class CourseController {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Access denied");
     }
 
+    // admin can add courses.
     @PostMapping("/add")
     public ResponseEntity<?> addCourse(@RequestHeader("X-User-Role") String role,
                                        @RequestBody CourseRequestDTO courseRequestDTO) {
@@ -52,5 +53,21 @@ public class CourseController {
             return ResponseEntity.ok(response);
         }
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Only ADMINs can add courses");
+    }
+
+    // admin can delete course by courseId.
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteCourse(@RequestHeader("X-User-Role") String role ,@PathVariable Long id)
+    {
+
+        // if the role is not admin the return unauthorized.
+        if(!"ROLE_ADMIN".equals(role))
+        {
+          return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Access Denied !");
+        }
+
+        // if the role is admin which is coming from header through gateway.
+        return ResponseEntity.ok(courseService.deleteCourse(id));
+
     }
 }

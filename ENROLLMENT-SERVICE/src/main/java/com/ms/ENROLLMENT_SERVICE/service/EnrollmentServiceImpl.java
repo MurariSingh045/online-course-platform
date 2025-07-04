@@ -52,6 +52,7 @@ public class EnrollmentServiceImpl implements EnrollmentService{
 
         // return response
         return EnrollmentResponseDTO.builder()
+                .id(saved.getId())
                 .userEmail(saved.getUserEmail())
                 .courseId(saved.getCourseId())
                 .enrolledAt(saved.getEnrolledAt())
@@ -64,6 +65,7 @@ public class EnrollmentServiceImpl implements EnrollmentService{
     public List<EnrollmentResponseDTO> getUserEnrollments(EnrollmentRequestDTO enrollmentRequestDTO) {
         return enrollmentRepository.findByUserEmail(enrollmentRequestDTO.getUserEmail()).stream()
                 .map(e -> EnrollmentResponseDTO.builder()
+                        .id(e.getId())
                         .userEmail(e.getUserEmail())
                         .courseId(e.getCourseId())
                         .enrolledAt(e.getEnrolledAt())
@@ -76,10 +78,17 @@ public class EnrollmentServiceImpl implements EnrollmentService{
     public List<EnrollmentResponseDTO> getAllEnrollments() {
         return enrollmentRepository.findAll().stream()
                 .map(e -> EnrollmentResponseDTO.builder()
+                        .id(e.getId())
                         .userEmail(e.getUserEmail())
                         .courseId(e.getCourseId())
                         .enrolledAt(e.getEnrolledAt())
                         .build())
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public String deleteEnrollment(Long id) {
+         enrollmentRepository.deleteById(id);
+         return "Deleted Successfully !";
     }
 }

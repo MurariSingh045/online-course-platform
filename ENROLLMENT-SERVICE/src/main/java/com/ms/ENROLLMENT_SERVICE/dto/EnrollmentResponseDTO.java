@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @Builder
 public class EnrollmentResponseDTO {
 
+    private Long id;
     private String userEmail;
     private Long courseId;
     private LocalDateTime enrolledAt;

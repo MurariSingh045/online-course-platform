@@ -43,4 +43,19 @@ public class EnrollmentController {
         // if the role is admin then access the request
         return ResponseEntity.ok(enrollmentService.getAllEnrollments());
     }
+
+    // ADMIN can delete any enrollment
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteEnrollment(@RequestHeader("X-User-Role") String role , @PathVariable Long id)
+    {
+        // if the user is not ADMIN
+        if(!"ROLE_ADMIN".equals(role))
+        {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Access denied");
+        }
+        // if the client is ADMIN
+
+        return ResponseEntity.ok(enrollmentService.deleteEnrollment(id));
+
+    }
 }
