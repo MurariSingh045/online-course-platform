@@ -1,6 +1,6 @@
 Online Course Platform (Microservices Project)
 
-A full-stack Online Course Platform built using Spring Boot Microservices architecture, implementing secure user authentication, role-based authorization, and seamless service communication.
+Online Course Platform built using Spring Boot Microservices architecture, implementing secure user authentication, role-based authorization, and seamless service communication.
 
 -----------------------------------------------------------------------------------------------------------------
 System Features:
