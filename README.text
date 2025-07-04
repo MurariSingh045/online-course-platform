@@ -13,15 +13,15 @@ System Features:
 -------------------------------------------------------------------------------------------------------------------
 
 ### Tech Stack :
-  Spring Boot
-  Spring Cloud Gateway
-  Spring Security + JWT
-  Spring Cloud Netflix Eureka
-  OpenFeign
-  MySQL
-  Lombok, ModelMapper
-  Postman
-  Maven (multi-module)
+ 1. Spring Boot
+ 2. Spring Cloud Gateway
+ 3. Spring Security + JWT
+ 4. Spring Cloud Netflix Eureka
+ 5. OpenFeign
+ 6. MySQL
+ 7. Lombok, ModelMapper
+ 8. Postman
+ 9. Maven (multi-module)
 
 --------------------------------------------------------------------------------------------------------------------------------
 
@@ -29,21 +29,21 @@ System Features:
 
 ```
 online-course-platform/
-├── api-gateway
-├── auth-service
-├── course-service
-├── enrollment-service
-├── discovery-server
+├── api-gateway : validate JWT and handle routes.
+├── auth-service : login , register user & generate JWT token. 
+├── course-service : admin can add & get courses , user can only get courses.
+├── enrollment-service : User can enroll & get in available courses , ADMIN can get all enrolled user 
+├── discovery-server : Register all the microservices.
 ```
 
 --------------------------------------------------------------------------------------------------------------
 ### Key Features
-  User authentication with JWT
-  Role-based access control
-  Gateway-level token validation using filters
-  Service discovery with Eureka
-  Feign clients for service-to-service calls
-  Clean DTO architecture
+ 1. User authentication with JWT
+ 2. Role-based access control
+ 3. Gateway-level token validation using filters
+ 4. Service discovery with Eureka
+ 5. Feign clients for service-to-service calls
+ 6. Clean DTO architecture
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -70,5 +70,5 @@ Start with:
 | `/auth/register`  | POST   | Register a new user        |
 | `/auth/login`     | POST   | Log in and receive JWT     |
 | `/courses/list`   | GET    | View available courses     |
-| `/courses/create` | POST   | Create course (Admin only) |
-| `/enroll`         | POST   | Enroll in a course         |
+| `/courses/add`    | POST   | Create course (Admin only) |
+| `/enrollments/enroll`   | POST   | Enroll in a course   |
